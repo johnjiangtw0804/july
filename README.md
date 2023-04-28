@@ -1,3 +1,3 @@
 # july
 
-Contributor: TT, YTT, JJ
+Contributor: TT, YYT, JJ
