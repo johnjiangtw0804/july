@@ -1,4 +1,4 @@
-package com.coffee.july.inventory;
+package com.coffee.july.inventory.Inventory;
 
 public class ProductItem {
 

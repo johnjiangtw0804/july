@@ -4,7 +4,7 @@
 */
 
 // package com.aws.rest;
-package com.coffee.july.inventory;
+package com.coffee.july.inventory.Inventory;
 
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;

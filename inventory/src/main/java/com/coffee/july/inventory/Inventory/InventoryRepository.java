@@ -4,7 +4,7 @@
    SPDX-License-Identifier: Apache-2.0
 */
 
-package com.coffee.july.inventory;
+package com.coffee.july.inventory.Inventory;
 
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Component;
+
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
 
@@ -29,7 +30,7 @@ import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
  Before running this code example, create an Amazon DynamoDB table named Work with a primary key named id.
  */
 @Component
-public class DynamoDBService {
+public class InventoryRepository {
 
     private DynamoDbClient getClient() {
         Region region = Region.US_EAST_1;
