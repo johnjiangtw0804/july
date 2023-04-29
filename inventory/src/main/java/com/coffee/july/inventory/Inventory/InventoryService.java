@@ -18,6 +18,7 @@ public class InventoryService {
 
     public List<ProductItem> getItems() {
         logger.info("Inventory Service: getItems");
-        return repository.getAllItems();
+        List<ProductItem> result = repository.getAllItems();
+        return result;
     }
 }

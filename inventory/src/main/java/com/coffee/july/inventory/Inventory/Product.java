@@ -13,9 +13,8 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbParti
 @DynamoDbBean
 public class Product {
     private String name;
-    private Integer count;
-    private Float price;
-    private String img;
+    private int count;
+    private float price;
     private String description;
 
     @DynamoDbPartitionKey
@@ -27,29 +26,27 @@ public class Product {
         this.name = name;
     };
 
+    public float getPrice() {
+        return this.price;
+    };
+
     @DynamoDbSortKey
     public void setPrice(float price) {
         this.price = price;
     };
-    public Float getPrice() {
-        return this.price;
-    };
-    public Integer getCount() {
+
+    public int getCount() {
         return this.count;
     };
+
     public void setCount(int count) {
         this.count = count;
-    };
-    public String getImg() {
-        return this.img;
-    };
-    public void setImg(String img) {
-        this.img = img;
     };
 
     public String getDescription() {
         return this.description;
     };
+
     public void setDescription(String description) {
         this.description = description;
     };
