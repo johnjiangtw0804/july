@@ -50,7 +50,6 @@ public class InventoryRepository {
             Iterator<Product> results = table.scan().items().iterator();
             ProductItem prodItem;
             ArrayList<ProductItem> itemList = new ArrayList<>();
-
             while (results.hasNext()) {
                 prodItem = new ProductItem();
                 Product prod = results.next();
