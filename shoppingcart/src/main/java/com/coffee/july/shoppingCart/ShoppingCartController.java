@@ -1,13 +1,13 @@
-package com.coffee.july.shoppingcart;
+package com.coffee.july.shoppingCart;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShoppingcartApplication {
+public class ShoppingCartController {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ShoppingcartApplication.class, args);
+		SpringApplication.run(ShoppingCartController.class, args);
 	}
 
 }

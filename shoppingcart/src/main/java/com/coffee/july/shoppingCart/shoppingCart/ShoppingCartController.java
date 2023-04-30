@@ -1,4 +1,7 @@
-package com.coffee.july.inventory.Inventory;
+package com.coffee.july.shoppingCart.shoppingCart;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,21 +16,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/inventory")
-public class InventoryController {
-    Logger logger = LoggerFactory.getLogger(InventoryController.class);
+@RequestMapping("/api/shoppingCart")
+public class ShoppingCartController {
+    Logger logger = LoggerFactory.getLogger(ShoppingCartController.class);
     @Autowired
-    private final InventoryService service;
+    private final ShoppingCartService service;
 
-    public InventoryController(InventoryService repository) {
+    public ShoppingCartController(ShoppingCartService repository) {
         this.service = repository;
     }
 
-    @GetMapping("/items")
+    @GetMapping("/carts")
     public ResponseEntity<Object> getItems() {
-        Map<String, List<ProductItem>> map = new HashMap<>();
+        Map<String, List<CartItem>> map = new HashMap<>();
         logger.info("InventoryController: getItems");
-        List<ProductItem> items = service.getItems();
+        List<CartItem> items = service.getItems();
         map.put("itemList", items);
         logger.info("getAllItems: Count " + items.size() + " items: " + items.toString());
         return ResponseEntity.ok().body(map);
