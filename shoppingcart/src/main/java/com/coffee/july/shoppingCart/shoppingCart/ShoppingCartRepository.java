@@ -16,8 +16,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,22 +39,20 @@ public class ShoppingCartRepository {
         .dynamoDbClient(getClient())
         .build();
     try {
-      DynamoDbTable<Cart> table = enhancedClient.table("Cart", TableSchema.fromBean(Cart.class));
+      DynamoDbTable<Cart> table = enhancedClient.table("shopping_cart", TableSchema.fromBean(Cart.class));
       Iterator<Cart> results = table.scan().items().iterator();
       CartItem cartItem;
       List<CartItem> itemList = new ArrayList<>();
-      logger.warn("Results " + results);
       while (results.hasNext()) {
-        Cart current = results.next();
-        cartItem = new CartItem();
-        cartItem.setUserID(current.getUserID());
-        cartItem.setCartItems(current.getCartItems());
-        cartItem.setDeliveryAddress(current.getDeliveryAddress());
-        cartItem.setTotal(current.getTotal());
-        cartItem.setPaidStatus(current.getPaidStatus());
+        // Cart current = results.next();
+        // cartItem = new CartItem();
+        // cartItem.setCartItems(current.getCartItems());
+        // logger.info("address " + current.getDeliveryAddress());
+        // // cartItem.setTotal(current.getTotal());
+        // logger.info("paid? " + current.getPaidStatus());
 
-        // Push the workItem to the list.
-        itemList.add(cartItem);
+        // // Push the workItem to the list.
+        // itemList.add(cartItem);
       }
       return itemList;
 
