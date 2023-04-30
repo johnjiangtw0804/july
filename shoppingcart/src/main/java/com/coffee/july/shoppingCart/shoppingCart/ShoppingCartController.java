@@ -12,8 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/shoppingCart")
@@ -27,12 +25,12 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/carts")
-    public ResponseEntity<Object> getItems() {
+    public ResponseEntity<Object> getCarts() {
+        logger.info("ShoppingCartController: getItems");
         Map<String, List<CartItem>> map = new HashMap<>();
-        logger.info("InventoryController: getItems");
-        List<CartItem> items = service.getItems();
-        map.put("itemList", items);
-        logger.info("getAllItems: Count " + items.size() + " items: " + items.toString());
+        List<CartItem> carts = service.getCarts();
+        map.put("cartList", carts);
+        logger.info("getCarts: Count " + carts.size() + " items: " + carts.toString());
         return ResponseEntity.ok().body(map);
     }
 }

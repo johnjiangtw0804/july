@@ -16,8 +16,8 @@ public class ShoppingCartService {
         this.repository = repository;
     }
 
-    public List<CartItem> getItems() {
-        logger.info("ShoppingCart Service: getItems");
+    public List<CartItem> getCarts() {
+        logger.info("ShoppingCart Service: getCarts");
         List<CartItem> result = repository.getAllCarts();
         return result;
     }
