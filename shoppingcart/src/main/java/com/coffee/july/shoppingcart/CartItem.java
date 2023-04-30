@@ -18,12 +18,12 @@ public class CartItem {
     this.UserID = UserID;
   };
 
-  public void setCartItems(ArrayList<List<String>> CartItems) {
-    this.CartItems = CartItems;
-  };
-
   public ArrayList<List<String>> getCartItems() {
     return this.CartItems;
+  };
+
+  public void setCartItems(ArrayList<List<String>> CartItems) {
+    this.CartItems = CartItems;
   };
 
   public float getTotal() {
