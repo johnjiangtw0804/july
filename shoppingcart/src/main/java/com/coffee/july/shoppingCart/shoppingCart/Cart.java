@@ -1,52 +1,72 @@
+/*
+   Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   SPDX-License-Identifier: Apache-2.0
+*/
+
+// package com.aws.rest;
 package com.coffee.july.shoppingCart.shoppingCart;
 
-import java.util.List;
-
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+
 @DynamoDbBean
+@DynamoDBTable(tableName = "shopping_cart")
 public class Cart {
 
-  private String UserID;
-  private List<List<String>> CartItems;
-  private String DeliveryAddress;
-  private float Total;
+  @DynamoDBAttribute(attributeName = "userID")
+  public int userID;
+
+  @DynamoDBAttribute(attributeName = "cartItems")
+  private Map<String, String> cartItems;
+
+  @DynamoDBAttribute(attributeName = "deliveryAddress")
+  private String deliveryAddress;
+
+  @DynamoDBAttribute(attributeName = "total")
+  private float total;
+
+  @DynamoDBAttribute(attributeName = "isPaid")
   private boolean isPaid;
 
-  @DynamoDbPartitionKey
-  public String getUserID() {
-    return this.UserID;
+  public int getUserID() {
+    return this.userID;
   };
 
-  public void setUserID(String UserID) {
-    this.UserID = UserID;
+  public void setUserID(int userID) {
+    this.userID = userID;
   };
 
-  public List<List<String>> getCartItems() {
-    return this.CartItems;
+  public Map<String, String> getCartItems() {
+    return this.cartItems;
   };
 
-  public void setCartItems(List<List<String>> CartItems) {
-    this.CartItems = CartItems;
+  public void setCartItems(Map<String, String> cartItems) {
+    this.cartItems = cartItems;
   };
 
   @DynamoDbSortKey
   public float getTotal() {
-    return this.Total;
+    return this.total;
   };
 
-  public void setTotal(float Total) {
-    this.Total = Total;
+  public void setTotal(float total) {
+    this.total = total;
   };
 
   public String getDeliveryAddress() {
-    return this.DeliveryAddress;
+    return this.deliveryAddress;
   };
 
-  public void setDeliveryAddress(String DeliveryAddress) {
-    this.DeliveryAddress = DeliveryAddress;
+  public void setDeliveryAddress(String deliveryAddress) {
+    this.deliveryAddress = deliveryAddress;
   };
 
   public boolean getPaidStatus() {
