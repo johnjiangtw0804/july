@@ -4,32 +4,27 @@
    SPDX-License-Identifier: Apache-2.0
 */
 
-package com.coffee.july.inventory;
+package com.coffee.july.inventory.Inventory;
 
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
-import software.amazon.awssdk.enhanced.dynamodb.Expression;
-import software.amazon.awssdk.enhanced.dynamodb.Key;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
-import software.amazon.awssdk.enhanced.dynamodb.model.ScanEnhancedRequest;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import org.springframework.stereotype.Component;
-import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
-import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
+import org.springframework.stereotype.Repository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /*
  Before running this code example, create an Amazon DynamoDB table named Work with a primary key named id.
  */
-@Component
-public class DynamoDBService {
+@Repository
+public class InventoryRepository {
+    Logger logger = LoggerFactory.getLogger(InventoryRepository.class);
 
     private DynamoDbClient getClient() {
         Region region = Region.US_EAST_1;
@@ -49,22 +44,20 @@ public class DynamoDBService {
             Iterator<Product> results = table.scan().items().iterator();
             ProductItem prodItem;
             ArrayList<ProductItem> itemList = new ArrayList<>();
-
             while (results.hasNext()) {
+                Product current = results.next();
                 prodItem = new ProductItem();
-                Product prod = results.next();
-                prodItem.setName(prod.getName());
-                prodItem.setCount(prod.getCount());
-                prodItem.setPrice(prod.getPrice());
-                prodItem.setImg(prod.getImg());
-                prodItem.setDescription(prod.getImg());
+                prodItem.setName(current.getName());
+                prodItem.setCount(current.getCount());
+                prodItem.setPrice(current.getPrice());
+                prodItem.setDescription(current.getDescription());
 
                 // Push the workItem to the list.
                 itemList.add(prodItem);
             }
             return itemList;
 
-        } catch (DynamoDbException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);
         }
