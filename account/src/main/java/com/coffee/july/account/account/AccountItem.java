@@ -15,6 +15,12 @@ public class AccountItem {
         this.password = login.getPassword();
     }
 
+    public AccountItem(RegisterRequest registerRequest) {
+        this.emailAddress = registerRequest.getUsername();
+        this.password = registerRequest.getPassword();
+        this.preferences = registerRequest.getDescription();
+    }
+
     public String getPassword() {
         return this.password;
     };

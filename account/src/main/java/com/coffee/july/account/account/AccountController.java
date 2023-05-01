@@ -28,14 +28,6 @@ import jakarta.servlet.http.HttpServletRequest;
 @CrossOrigin
 @RequestMapping("/api/account")
 public class AccountController {
-    private static class userID {
-        private static int id = 0;
-
-        public synchronized static int getID() {
-            return id++;
-        }
-    }
-
     Logger logger = LoggerFactory.getLogger(AccountController.class);
     @Autowired
     private final AccountService service;
@@ -45,21 +37,27 @@ public class AccountController {
     }
 
     // this is to register a new account
-    @PostMapping("/register")
-    public ResponseEntity<Object> register(@RequestBody AuthenticationRequest account, ServletWebRequest webRequest) {
-        logger.info("AccountController: register" + account.toString());
-        AccountItem newAccount = new AccountItem(account);
-        newAccount.setPreferences("I like coffee");
+    @PostMapping("/process_register")
+    public ResponseEntity<Object> register(@RequestBody RegisterRequest registerRequest, ServletWebRequest webRequest) {
+        logger.info("AccountController: register " + registerRequest.toString());
+        AccountItem newAccount = new AccountItem(registerRequest);
+        if (newAccount.getEmailAddress() == null || newAccount.getPassword() == null) {
+            logger.info("register: emailAddress or password is null");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        if (newAccount.getPreferences() == null) {
+            newAccount.setPreferences("I like coffee");
+        }
         AccountItem newAccountItem = service.register(newAccount);
         logger.info("register successfully: " + newAccountItem.getEmailAddress());
 
         HttpServletRequest request = webRequest.getRequest();
         URI location = ServletUriComponentsBuilder.fromRequest(request)
-                .path("/{id}").buildAndExpand(newAccountItem.getEmailAddress())
+                .path("/{userName}").buildAndExpand(newAccountItem.getEmailAddress())
                 .toUri();
         logger.info("createPlan: plan created. Plan = " + newAccountItem.toString());
 
-        return ResponseEntity.created(location).body(account);
+        return ResponseEntity.created(location).body(registerRequest);
     }
 
     // this is log in API
