@@ -8,8 +8,6 @@ package com.coffee.july.shoppingCart.shoppingCart;
 
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
