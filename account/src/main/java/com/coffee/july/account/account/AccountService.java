@@ -17,19 +17,19 @@ public class AccountService {
 
     public AccountItem register(AccountItem item) {
         logger.info("Account Service: register");
-        AccountItem result = repository.register(item);
+        AccountItem result = repository.registerAccount(item);
         return result;
     }
 
-    public AccountItem login(Login login) {
-        logger.info("Account Service: login");
-        AccountItem result = repository.login(login);
-        return result;
+    public AccountItem login(AccountItem login) {
+        logger.info("Account Service: login attempt");
+        boolean isLogin = repository.isLogin(login);
+        return isLogin ? login : null;
     }
 
-    // public List<AccountItem> getAccounts() {
-    //     logger.info("Account Service: getAccounts");
-    //     List<AccountItem> result = repository.getAllAccounts();
-    //     return result;
-    // }
+    public List<AccountItem> getAccounts() {
+        logger.info("Account Service: getAccounts");
+        List<AccountItem> result = repository.getAllAccounts();
+        return result;
+    }
 }
