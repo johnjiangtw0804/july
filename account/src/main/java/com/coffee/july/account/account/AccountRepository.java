@@ -29,6 +29,11 @@ public class AccountRepository {
                 .build();
     }
 
+    // L
+
+    // Register a new account.
+
+
     // Get All items from the DynamoDB table.
     public List<AccountItem> getAllAccounts() {
         DynamoDbEnhancedClient enhancedClient = DynamoDbEnhancedClient.builder()

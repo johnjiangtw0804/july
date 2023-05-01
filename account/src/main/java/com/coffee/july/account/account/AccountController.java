@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/account")
 public class AccountController {
     Logger logger = LoggerFactory.getLogger(AccountController.class);
@@ -23,14 +24,23 @@ public class AccountController {
         this.service = repository;
     }
 
-    @GetMapping("/items")
-    public ResponseEntity<Object> getAccounts() {
-        Map<String, List<AccountItem>> map = new HashMap<>();
-        logger.info("AccountItemController: getAccounts");
-        List<AccountItem> accounts = service.getAccounts();
-        map.put("accountList", accounts);
-        logger.info("getAccounts: Count " + accounts.size() + " accounts: " + accounts.toString());
-        return ResponseEntity.ok().body(map);
+    @PostMapping("/register")
+    public ResponseEntity<Object> register(@RequestBody AccountItem item) {
+        logger.info("AccountController: register");
+        AccountItem account = service.register(item);
+        logger.info("register: " + account.toString());
+        return ResponseEntity.ok().body(account);
+    }
+
+    // this is log in API
+    @GetMapping("/registerapii")
+    public ResponseEntity<Object> login(@RequestBody Login login) {
+        logger.info("AccountController: login");
+
+        AccountItem account = service.login(login);
+        
+    }
+
     }
 
 }

@@ -12,13 +12,16 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 public class Account {
 
     @DynamoDBAttribute(attributeName = "userID")
-    private int UserID;
+    private int userID;
 
     @DynamoDBAttribute(attributeName = "emailAddress")
-    private String EmailAddress;
+    private String emailAddress;
+
+    @DynamoDBAttribute(attributeName = "password")
+    private String password;
 
     @DynamoDBAttribute(attributeName = "preferences")
-    private String Preferences;
+    private String preferences;
 
     public int getUserID() {
         return this.UserID;
@@ -44,4 +47,11 @@ public class Account {
         this.Preferences = Preferences;
     };
 
+    public String getPassword() {
+        return this.Password;
+    };
+
+    public void setPassword(String Password) {
+        this.Password = Password;
+    };
 }

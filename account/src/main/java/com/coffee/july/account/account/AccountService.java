@@ -15,9 +15,21 @@ public class AccountService {
         this.repository = repository;
     }
 
-    public List<AccountItem> getAccounts() {
-        logger.info("Account Service: getAccounts");
-        List<AccountItem> result = repository.getAllAccounts();
+    public AccountItem register(AccountItem item) {
+        logger.info("Account Service: register");
+        AccountItem result = repository.register(item);
         return result;
     }
+
+    public AccountItem login(Login login) {
+        logger.info("Account Service: login");
+        AccountItem result = repository.login(login);
+        return result;
+    }
+
+    // public List<AccountItem> getAccounts() {
+    //     logger.info("Account Service: getAccounts");
+    //     List<AccountItem> result = repository.getAllAccounts();
+    //     return result;
+    // }
 }
