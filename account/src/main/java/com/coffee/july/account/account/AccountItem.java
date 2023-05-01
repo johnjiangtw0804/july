@@ -1,23 +1,8 @@
-
 package com.coffee.july.account.account;
 
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-
-@DynamoDbBean
-@DynamoDBTable(tableName = "account")
-public class Account {
-
-    @DynamoDBAttribute(attributeName = "userID")
+public class AccountItem {
     private int UserID;
-
-    @DynamoDBAttribute(attributeName = "emailAddress")
     private String EmailAddress;
-
-    @DynamoDBAttribute(attributeName = "preferences")
     private String Preferences;
 
     public int getUserID() {
@@ -43,5 +28,4 @@ public class Account {
     public void setPreferences(String Preferences) {
         this.Preferences = Preferences;
     };
-
 }
