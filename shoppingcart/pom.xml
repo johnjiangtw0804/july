@@ -11,7 +11,7 @@
 	<groupId>com.coffee.july</groupId>
 	<artifactId>shoppingcart</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>inventory</name>
+	<name>shoppingcart</name>
 	<description>July coffee</description>
 	<properties>
     	<maven.compiler.source>17</maven.compiler.source>

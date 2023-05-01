@@ -44,15 +44,16 @@ public class ShoppingCartRepository {
       CartItem cartItem;
       List<CartItem> itemList = new ArrayList<>();
       while (results.hasNext()) {
-        // Cart current = results.next();
-        // cartItem = new CartItem();
-        // cartItem.setCartItems(current.getCartItems());
-        // logger.info("address " + current.getDeliveryAddress());
-        // // cartItem.setTotal(current.getTotal());
-        // logger.info("paid? " + current.getPaidStatus());
+        Cart current = results.next();
+        cartItem = new CartItem();
+        cartItem.setDeliveryAddress(current.getDeliveryAddress());
+        cartItem.setPaidStatus(current.getPaidStatus());
+        cartItem.setUserID(current.getUserID());
+        cartItem.setCartItems(current.getCartItems());
+        cartItem.setTotal(current.getTotal());
 
-        // // Push the workItem to the list.
-        // itemList.add(cartItem);
+        // Push the workItem to the list.
+        itemList.add(cartItem);
       }
       return itemList;
 
