@@ -1,31 +1,47 @@
 package com.coffee.july.account.account;
 
-public class AccountItem {
-    private int UserID;
-    private String EmailAddress;
-    private String Preferences;
+import com.coffee.july.account.account.authenticationModel.AuthenticationRequest;
 
-    public int getUserID() {
-        return this.UserID;
+public class AccountItem {
+    private String emailAddress;
+    private String password;
+    private String preferences;
+
+    public AccountItem() {
+    }
+
+    public AccountItem(AuthenticationRequest login) {
+        this.emailAddress = login.getUsername();
+        this.password = login.getPassword();
+    }
+
+    public AccountItem(RegisterRequest registerRequest) {
+        this.emailAddress = registerRequest.getUsername();
+        this.password = registerRequest.getPassword();
+        this.preferences = registerRequest.getDescription();
+    }
+
+    public String getPassword() {
+        return this.password;
     };
 
-    public void setUserID(int UserID) {
-        this.UserID = UserID;
+    public void setPassword(String Password) {
+        this.password = Password;
     };
 
     public String getEmailAddress() {
-        return this.EmailAddress;
+        return this.emailAddress;
     };
 
     public void setEmailAddress(String EmailAddress) {
-        this.EmailAddress = EmailAddress;
+        this.emailAddress = EmailAddress;
     };
 
     public String getPreferences() {
-        return this.Preferences;
+        return this.preferences;
     };
 
     public void setPreferences(String Preferences) {
-        this.Preferences = Preferences;
+        this.preferences = Preferences;
     };
 }

@@ -1,9 +1,10 @@
 
 package com.coffee.july.account.account;
 
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
@@ -11,37 +12,38 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 @DynamoDBTable(tableName = "account")
 public class Account {
 
-    @DynamoDBAttribute(attributeName = "userID")
-    private int UserID;
-
     @DynamoDBAttribute(attributeName = "emailAddress")
-    private String EmailAddress;
+    private String emailAddress;
 
-    @DynamoDBAttribute(attributeName = "preferences")
-    private String Preferences;
+    @DynamoDBAttribute(attributeName = "password")
+    private String password;
 
-    public int getUserID() {
-        return this.UserID;
-    };
+    private String preferences;
 
-    public void setUserID(int UserID) {
-        this.UserID = UserID;
-    };
-
+    @DynamoDbPartitionKey
     public String getEmailAddress() {
-        return this.EmailAddress;
+        return this.emailAddress;
     };
 
     public void setEmailAddress(String EmailAddress) {
-        this.EmailAddress = EmailAddress;
+        this.emailAddress = EmailAddress;
     };
 
+    public String getPassword() {
+        return this.password;
+    };
+
+    public void setPassword(String Password) {
+        this.password = Password;
+    };
+
+    @DynamoDbSortKey
+    @DynamoDBAttribute(attributeName = "preferences")
     public String getPreferences() {
-        return this.Preferences;
+        return this.preferences;
     };
 
     public void setPreferences(String Preferences) {
-        this.Preferences = Preferences;
+        this.preferences = Preferences;
     };
-
 }

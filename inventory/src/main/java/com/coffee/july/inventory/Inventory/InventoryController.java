@@ -25,6 +25,7 @@ public class InventoryController {
         this.service = repository;
     }
 
+    @CrossOrigin
     @GetMapping("/items")
     public ResponseEntity<Object> getItems() {
         Map<String, List<ProductItem>> map = new HashMap<>();
