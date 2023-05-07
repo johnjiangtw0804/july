@@ -1,0 +1,48 @@
+// SJSU CS 218 Spring 2023 TEAM1
+package com.coffee.july.account.account;
+
+import com.coffee.july.account.account.authenticationModel.AuthenticationRequest;
+
+public class AccountItem {
+    private String emailAddress;
+    private String password;
+    private String preferences;
+
+    public AccountItem() {
+    }
+
+    public AccountItem(AuthenticationRequest login) {
+        this.emailAddress = login.getUsername();
+        this.password = login.getPassword();
+    }
+
+    public AccountItem(RegisterRequest registerRequest) {
+        this.emailAddress = registerRequest.getUsername();
+        this.password = registerRequest.getPassword();
+        this.preferences = registerRequest.getDescription();
+    }
+
+    public String getPassword() {
+        return this.password;
+    };
+
+    public void setPassword(String Password) {
+        this.password = Password;
+    };
+
+    public String getEmailAddress() {
+        return this.emailAddress;
+    };
+
+    public void setEmailAddress(String EmailAddress) {
+        this.emailAddress = EmailAddress;
+    };
+
+    public String getPreferences() {
+        return this.preferences;
+    };
+
+    public void setPreferences(String Preferences) {
+        this.preferences = Preferences;
+    };
+}

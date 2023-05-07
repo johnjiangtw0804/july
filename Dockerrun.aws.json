@@ -1,0 +1,61 @@
+{
+  "AWSEBDockerrunVersion": "2",
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "public.ecr.aws/s1u5g1x7/frontend:latest",
+      "essential": true,
+      "memory": 1024,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 3000
+        }
+      ],
+      "links": [
+        "inventory",
+        "account",
+        "shopping-cart"
+      ]
+    },
+    {
+      "name": "inventory",
+      "image": "public.ecr.aws/s1u5g1x7/inventory:latest",
+      "essential": true,
+      "memory": 1024,
+      "hostname": "inventory",
+      "portMappings": [
+        {
+          "hostPort": 8081,
+          "containerPort": 8081
+        }
+      ]
+    },
+    {
+      "name": "account",
+      "image": "public.ecr.aws/s1u5g1x7/account:latest",
+      "essential": true,
+      "memory": 1024,
+      "hostname": "account",
+      "portMappings": [
+        {
+          "hostPort": 8082,
+          "containerPort": 8082
+        }
+      ]
+    },
+    {
+      "name": "shopping-cart",
+      "image": "public.ecr.aws/s1u5g1x7/shopping-cart:latest",
+      "essential": true,
+      "memory": 1024,
+      "hostname": "shopping-cart",
+      "portMappings": [
+        {
+          "hostPort": 8083,
+          "containerPort": 8083
+        }
+      ]
+    }
+  ]
+}

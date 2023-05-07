@@ -1,0 +1,36 @@
+version: "3.3"
+services:
+  frontend:
+    container_name: frontend
+    image: public.ecr.aws/s1u5g1x7/frontend:latest
+    restart: always
+    depends_on:
+      - inventory
+      - account
+      - shopping-cart
+    ports:
+      - "80:3000"
+  inventory:
+    container_name: inventory
+    image: public.ecr.aws/s1u5g1x7/inventory:latest
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+     SERVER_PORT: 8081
+  account:
+    container_name: account
+    image: public.ecr.aws/s1u5g1x7/account:latest
+    restart: always
+    ports:
+      - "8082:8082"
+    environment:
+     SERVER_PORT: 8082
+  shopping-cart:
+    container_name: shopping-cart
+    image: public.ecr.aws/s1u5g1x7/shopping-cart:latest
+    restart: always
+    ports:
+      - "8083:8083"
+    environment:
+     SERVER_PORT: 8083
